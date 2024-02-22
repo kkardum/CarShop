@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <h2>Get in touch</h2>
+        <input type="hidden" name="contact_id" id="contactId">
+        <input type="hidden" name="access_key" value="e5aa2c0c-09e8-4790-b206-c275ca130084">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <input type="hidden" name="created_date" id="createdDate">
+        <button type="submit">Submit Form</button>
+    </form>
+
+    <script src="https://web3forms.com/client/script.js" async defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var today = new Date();
+            var date = today.getFullYear() + '-' + (today.getMonth() + 1).toString().padStart(2, '0') + '-' + today.getDate().toString().padStart(2, '0');
+            document.getElementById('createdDate').value = date;
+
+            var contactId = Math.floor(Math.random() * 1000000);
+            document.getElementById('contactId').value = contactId;
+        });
+    </script>
+
+</body>
+</html>
